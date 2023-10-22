@@ -15,17 +15,17 @@ Pin-Priority: 1001
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";'>
 sudo apt install -y firefox --allow-downgrades
-sudo apt install -y curl
-pkill -f firefox
+sudo apt install -y curl└─$ revert to 6.5.4-76060504-generic  of kernel
 
-cp -R * ~/Downloads/new-os/My-ff-profile/*.default-release
 
 
 # Change directory to Downloads
 cd ~/Downloads
 
 #Download Git stuff nw-os dolfer
-wget http://www.example.com/path/to/bascr.txt 
+wget https://drive.proton.me/urls/5CYY76N66M#LQfqOAn1XJhO
+
+unzip new-os.zip -d /path/to/Downloads/folder_name
 
 cd new-os
 
@@ -46,9 +46,7 @@ rm ~/.bashrc_temp
 
 
 #Firefox ESR
-sudo apt update-------------------------------------------------------------------------------
-Initial Ubuntu Configuration commands
--------------------------------------------------------------------------------
+sudo apt update
 sudo apt purge -y apport
 sudo apt remove -y popularity-contest
 sudo apt autoremove -y
@@ -120,6 +118,7 @@ sudo apt-get install proton-vpn-gnome-desktop
 sudo apt install libayatana-appindicator3-1 gir1.2-ayatanaappindicator3-0.1 gnome-shell-extension-appindicator
 
 # Install VMware
+
 git clone https://github.com/mkubecek/vmware-host-modules.git
 cd vmware-host-modules
 git checkout workstation-17.0.2
@@ -165,10 +164,6 @@ sudo apt install brave-browser
 sudo chmod +x NVIDIA-Linux-x86_64-525.105.17.run
 sudo ./NVIDIA-Linux-x86_64-525.105.17.run
 
-kernel 6.5.6
-cd linux-6.5.8
-make 
-sudo make install
 
 #metadata tool
 #Metadata Tool Installation
