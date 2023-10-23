@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Define variables for the 12TB device
+device_12tb="/dev/sda1"
+mount_point_12tb="/media/jfmd/12TB"
+filesystem_type_12tb="ext4" # Replace with the actual filesystem type if different
+
+# Define variables for the 1TB device
+device_1tb="/dev/sdb1"
+mount_point_1tb="/media/jfmd/1TB"
+filesystem_type_1tb="ext4" # Replace with the actual filesystem type if different
+
+# Function to create a directory if it doesn't exist
+create_directory() {
+    directory="$1"
+
+    if [ ! -d "$directory" ]; then
+        sudo mkdir -p "$directory"
+    fi
+}
+
+# Create the necessary directories
+create_directory "$mount_point_12tb"
+create_directory "$mount_point_1tb"
+
+# Function to mount a device and add to /etc/fstab
+mount_device() {
+    device="$1"
+    mount_point="$2"
+    filesystem_type="$3"
+
+    # Add an entry to /etc/fstab
+    fstab_entry="$device   $mount_point   $filesystem_type   defaults   0   0"
+    echo "$fstab_entry" | sudo tee -a /etc/fstab > /dev/null
+
+    # Mount the device
+    sudo mount -a
+
+    # Verify the mount
+    if mountpoint -q "$mount_point"; then
+        echo "Mount successful. Device $device is now mounted at $mount_point."
+    else
+        echo "Mount failed. Please check the configuration for device $device."
+    fi
+}
+
+# Mount the 12TB device
+mount_device "$device_12tb" "$mount_point_12tb" "$filesystem_type_12tb"
+
+# Mount the 1TB device
+mount_device "$device_1tb" "$mount_point_1tb" "$filesystem_type_1tb"
